@@ -68,7 +68,7 @@ exports.default = function (source) {
         if (shiftKey && this.orderBy.column && this.hasMultiSort) {
           this.setUserMultiSort(column);
         } else {
-          var ascending = this.orderBy.column === column ? !this.orderBy.ascending : true;
+          var ascending = this.orderBy.column == column ? !this.orderBy.ascending : true;
           var orderBy = {
             column: column,
             ascending: ascending

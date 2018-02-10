@@ -62,8 +62,8 @@ exports.default = function () {
         that.query = query;
       }
 
-      picker.setStartDate(window.moment());
-      picker.setEndDate(window.moment());
+      picker.setStartDate(moment());
+      picker.setEndDate(moment());
 
       that.updateState('query', query);
 

@@ -12,7 +12,7 @@ exports.default = function (column) {
   }
 
   return !!this.userMultiSorting[userMultiSort[0]].filter(function (col) {
-    return col.column === column;
+    return col.column == column;
   }).length;
 };
 

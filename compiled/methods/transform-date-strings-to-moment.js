@@ -11,7 +11,7 @@ exports.default = function () {
   // eslint-disable-next-line no-unused-vars
   .forEach(function (row, index) {
     _this.opts.dateColumns.forEach(function (column) {
-      row[column] = window.moment(row[column], _this.opts.toMomentFormat);
+      row[column] = moment(row[column], _this.opts.toMomentFormat);
     });
   });
 };

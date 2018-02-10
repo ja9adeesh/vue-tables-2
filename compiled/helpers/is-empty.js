@@ -6,7 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = function (obj) {
   // null and undefined are "empty"
-  if (obj === null || obj === void 0) {
+  // eslint-disable-next-line no-eq-null
+  if (obj == null) {
     return true;
   }
 

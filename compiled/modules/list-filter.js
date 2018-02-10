@@ -22,7 +22,7 @@ exports.default = function (h, selectClass) {
       var id = _ref2.id,
           text = _ref2.text;
 
-      selected = id === _this.query[column] && _this.query[column] !== '';
+      selected = id == _this.query[column] && _this.query[column] !== '';
       options.push(h(
         'option',
         {

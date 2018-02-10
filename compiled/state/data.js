@@ -32,7 +32,7 @@ exports.default = function (useVuex, source) {
     query: null,
     page: page,
     limit: 10,
-    windowWidth: window.innerWidth,
+    windowWidth: innerWidth,
     orderBy: {
       column: false,
       ascending: true

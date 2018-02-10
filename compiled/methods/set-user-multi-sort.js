@@ -14,7 +14,7 @@ exports.default = function (secondaryCol) {
 
   var multi = this.userMultiSorting[primaryCol];
 
-  if (primaryCol === secondaryCol) {
+  if (primaryCol == secondaryCol) {
     if (!multi.length || primaryAsc) {
       // primary is the only sorted column or is ascending
       this.orderBy.ascending = !this.orderBy.ascending;
@@ -27,7 +27,7 @@ exports.default = function (secondaryCol) {
   } else {
     var secondary = multi.filter(function (_ref) {
       var column = _ref.column;
-      return column === secondaryCol;
+      return column == secondaryCol;
     })[0];
 
     if (secondary) {
@@ -35,7 +35,7 @@ exports.default = function (secondaryCol) {
         // remove sort
         this.userMultiSorting[primaryCol] = multi.filter(function (_ref2) {
           var column = _ref2.column;
-          return column !== secondaryCol;
+          return column != secondaryCol;
         });
         if (!this.userMultiSorting[primaryCol].length) {
           this.userMultiSorting = {};

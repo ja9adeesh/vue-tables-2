@@ -123,7 +123,7 @@ function foundMatch(query, value, isListFilter) {
 
   // List Filter
   if (isListFilter) {
-    return value === query;
+    return value == query;
   }
 
   // Text Filter
@@ -136,8 +136,8 @@ function foundMatch(query, value, isListFilter) {
   var end = void 0;
 
   if ((0, _isValidMomentObject2.default)(value)) {
-    start = window.moment(query.start, 'YYYY-MM-DD HH:mm:ss');
-    end = window.moment(query.end, 'YYYY-MM-DD HH:mm:ss');
+    start = moment(query.start, 'YYYY-MM-DD HH:mm:ss');
+    end = moment(query.end, 'YYYY-MM-DD HH:mm:ss');
 
     return value >= start && value <= end;
   }

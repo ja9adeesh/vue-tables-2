@@ -18,7 +18,7 @@ exports.default = function () {
 
   if (this.opts.filterByColumn) {
     this.opts.dateColumns.forEach(function (column) {
-      el = window.$(_this.$el).find('#vue-table-' + column + '-filter').data('daterangepicker');
+      el = $(_this.$el).find('#vue-table-' + column + '-filter').data('daterangepicker');
       if (el) {
         el.remove();
       }

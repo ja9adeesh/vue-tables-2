@@ -17,15 +17,15 @@ exports.default = function (column) {
 
   if (this.hasMultiSort && this.orderBy.column && this.userMultiSorting[this.orderBy.column]) {
     var col = this.userMultiSorting[this.orderBy.column].filter(function (c) {
-      return c.column === column;
+      return c.column == column;
     })[0];
     if (col) {
       cls += col.ascending ? this.opts.sortIcon.up : this.opts.sortIcon.down;
     }
   }
 
-  if (column === this.orderBy.column) {
-    cls += this.orderBy.ascending === 1 ? this.opts.sortIcon.up : this.opts.sortIcon.down;
+  if (column == this.orderBy.column) {
+    cls += this.orderBy.ascending == 1 ? this.opts.sortIcon.up : this.opts.sortIcon.down;
   }
 
   return cls;

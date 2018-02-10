@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function () {
-  return { id: makeId(), openChildRows: [], windowWidth: window.innerWidth, userMultiSorting: {} };
+  return { id: makeId(), openChildRows: [], windowWidth: innerWidth, userMultiSorting: {} };
 };
 
 function makeId() {

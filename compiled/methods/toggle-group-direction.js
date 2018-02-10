@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function () {
-  if (this.orderBy.column !== this.opts.groupBy) {
+  if (this.orderBy.column != this.opts.groupBy) {
     this.setOrder(this.opts.groupBy, true);
   } else {
     this.setOrder(this.opts.groupBy, !this.orderBy.ascending);

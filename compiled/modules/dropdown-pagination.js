@@ -12,7 +12,7 @@ exports.default = function (h) {
     var selected = void 0;
 
     for (var pag = 1; pag <= _this.totalPages; pag++) {
-      selected = _this.page === pag;
+      selected = _this.page == pag;
       pages.push(h(
         "option",
         {

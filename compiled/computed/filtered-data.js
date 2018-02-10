@@ -23,7 +23,7 @@ exports.default = function () {
   }
 
   if (this.vuex) {
-    if (this.count !== data.length) {
+    if (this.count != data.length) {
       this.commit('SET_COUNT', data.length);
     }
   } else {

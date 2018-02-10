@@ -12,6 +12,10 @@
         },
         "sourceType": "module"
     },
+    "globals": {
+        "moment": true,
+        "$": true
+    },
     "rules": {
         /*
          * Possible Errors
@@ -98,7 +102,7 @@
         /* encourages use of dot notation whenever possible */
         "dot-location": [2, "property"],
         /* enforces consistent newlines before or after dots (off by default) */
-        "eqeqeq": 2,
+        /* "eqeqeq": 2, */
         /* require the use of === and !== */
         "guard-for-in": 2,
         /* make sure for-in loops have an if statement (off by default) */

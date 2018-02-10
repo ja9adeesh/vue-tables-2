@@ -27,8 +27,8 @@ exports.default = function (self) {
 
   self.columnsDisplay = getColumnsDisplay(self.opts.columnsDisplay);
 
-  window.addEventListener('resize', function () {
-    self.windowWidth = window.innerWidth;
+  addEventListener('resize', function () {
+    self.windowWidth = innerWidth;
   });
 };
 
