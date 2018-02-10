@@ -1,10 +1,15 @@
 "use strict";
 
-module.exports = function () {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-    if (this.orderBy.column != this.opts.groupBy) {
-        this.setOrder(this.opts.groupBy, true);
-    } else {
-        this.setOrder(this.opts.groupBy, !this.orderBy.ascending);
-    }
+exports.default = function () {
+  if (this.orderBy.column !== this.opts.groupBy) {
+    this.setOrder(this.opts.groupBy, true);
+  } else {
+    this.setOrder(this.opts.groupBy, !this.orderBy.ascending);
+  }
 };
+
+module.exports = exports["default"];

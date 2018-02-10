@@ -1,10 +1,17 @@
 'use strict';
 
-module.exports = function (value, column) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
+exports.default = function (value, column) {
   var list = this.listColumnsObject[column];
 
-  if (typeof list[value] == 'undefined') return value;
+  if (typeof list[value] === 'undefined') {
+    return value;
+  }
 
   return list[value];
 };
+
+module.exports = exports['default'];

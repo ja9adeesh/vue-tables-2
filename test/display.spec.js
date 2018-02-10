@@ -30,7 +30,7 @@ describe(suite +': Basic Display (default options)', () => {
 	});
 
 	it('Displays a generic filter', ()=>{
-		exists('.VueTables__search input');
+		exists('.vue-table-search input');
 	});
 
 	it('displays sort icons for all columns', () => {

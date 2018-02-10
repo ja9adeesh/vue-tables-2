@@ -1,13 +1,21 @@
 'use strict';
 
-module.exports = function (h, classes, item) {
-    if (classes.framework === 'bulma') {
-        return item;
-    }
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-    return h(
-        'li',
-        null,
-        [item]
-    );
+exports.default = function (h, _ref, item) {
+  var framework = _ref.framework;
+
+  if (framework === 'bulma') {
+    return item;
+  }
+
+  return h(
+    'li',
+    null,
+    [item]
+  );
 };
+
+module.exports = exports['default'];

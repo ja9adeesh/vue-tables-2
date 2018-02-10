@@ -1,10 +1,21 @@
 'use strict';
 
-var is_valid_moment_object = require('../helpers/is-valid-moment-object');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-module.exports = function (property) {
+exports.default = function (property) {
+  if ((0, _isValidMomentObject2.default)(property)) {
+    return property.format(this.opts.dateFormat);
+  }
 
-      if (is_valid_moment_object(property)) return property.format(this.opts.dateFormat);
-
-      return property;
+  return property;
 };
+
+var _isValidMomentObject = require('../helpers/is-valid-moment-object');
+
+var _isValidMomentObject2 = _interopRequireDefault(_isValidMomentObject);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];

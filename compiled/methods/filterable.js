@@ -1,8 +1,15 @@
 'use strict';
 
-module.exports = function (column) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-  if (!this.opts.filterable) return false;
+exports.default = function (column) {
+  if (!this.opts.filterable) {
+    return false;
+  }
 
-  return typeof this.opts.filterable == 'boolean' && this.opts.filterable || this.opts.filterable.indexOf(column) > -1;
+  return typeof this.opts.filterable === 'boolean' && this.opts.filterable || this.opts.filterable.includes(column);
 };
+
+module.exports = exports['default'];

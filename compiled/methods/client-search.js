@@ -1,21 +1,23 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var object_filled_keys_count = require('../helpers/object-filled-keys-count');
-var is_valid_moment_object = require('../helpers/is-valid-moment-object');
-var filterByCustomFilters = require('../filters/custom-filters');
+exports.default = function (data, e) {
+  var _this = this;
 
-module.exports = function (data, e) {
+  var value = void 0;
 
   if (e) {
-
     var _query = this.query;
 
     this.setPage(1, true);
 
     var name = this.getName(e.target.name);
-    var value = _typeof(e.target.value) === 'object' ? e.target.value : '' + e.target.value;
+    value = _typeof(e.target.value) === 'object' ? e.target.value : '' + e.target.value;
 
     if (name) {
       _query[name] = value;
@@ -23,7 +25,11 @@ module.exports = function (data, e) {
       _query = value;
     }
 
-    this.vuex ? this.commit('SET_FILTER', _query) : this.query = _query;
+    if (this.vuex) {
+      this.commit('SET_FILTER', _query);
+    } else {
+      this.query = _query;
+    }
 
     this.updateState('query', _query);
 
@@ -39,50 +45,71 @@ module.exports = function (data, e) {
 
   var totalQueries = !query ? 0 : 1;
 
-  if (!this.opts) return data;
-
-  if (this.opts.filterByColumn) {
-    totalQueries = object_filled_keys_count(query);
+  if (!this.opts) {
+    return data;
   }
 
-  var value;
-  var found;
-  var currentQuery;
+  if (this.opts.filterByColumn) {
+    totalQueries = (0, _objectFilledKeysCount2.default)(query);
+  }
+
+  var found = void 0;
+  var currentQuery = void 0;
   var dateFormat = this.opts.dateFormat;
-  var filterByDate;
-  var isListFilter;
+  var filterByDate = void 0;
+  var isListFilter = void 0;
 
-  var data = filterByCustomFilters(data, this.opts.customFilters, this.customQueries);
+  var dataFiltered = (0, _customFilters2.default)(data, this.opts.customFilters, this.customQueries);
 
-  if (!totalQueries) return data;
+  if (!totalQueries) {
+    return dataFiltered;
+  }
 
-  return data.filter(function (row, index) {
-
+  // eslint-disable-next-line no-unused-vars
+  return dataFiltered.filter(function (row, index) {
     found = 0;
 
-    this.filterableColumns.forEach(function (column) {
-
-      filterByDate = this.opts.dateColumns.indexOf(column) > -1 && this.opts.filterByColumn;
-      isListFilter = this.isListFilter(column) && this.opts.filterByColumn;
+    _this.filterableColumns.forEach(function (column) {
+      filterByDate = _this.opts.dateColumns.includes(column) && _this.opts.filterByColumn;
+      isListFilter = _this.isListFilter(column) && _this.opts.filterByColumn;
 
       value = getValue(row[column], filterByDate, dateFormat);
 
-      currentQuery = this.opts.filterByColumn ? query[column] : query;
+      currentQuery = _this.opts.filterByColumn ? query[column] : query;
 
       currentQuery = setCurrentQuery(currentQuery);
 
-      if (currentQuery && foundMatch(currentQuery, value, isListFilter)) found++;
-    }.bind(this));
+      if (currentQuery && foundMatch(currentQuery, value, isListFilter)) {
+        found++;
+      }
+    });
 
     return found >= totalQueries;
-  }.bind(this));
+  });
 };
 
+var _objectFilledKeysCount = require('../helpers/object-filled-keys-count');
+
+var _objectFilledKeysCount2 = _interopRequireDefault(_objectFilledKeysCount);
+
+var _isValidMomentObject = require('../helpers/is-valid-moment-object');
+
+var _isValidMomentObject2 = _interopRequireDefault(_isValidMomentObject);
+
+var _customFilters = require('../filters/custom-filters');
+
+var _customFilters2 = _interopRequireDefault(_customFilters);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function setCurrentQuery(query) {
+  if (!query) {
+    return '';
+  }
 
-  if (!query) return '';
-
-  if (typeof query == 'string') return query.toLowerCase();
+  if (typeof query === 'string') {
+    return query.toLowerCase();
+  }
 
   // Date Range
 
@@ -90,34 +117,36 @@ function setCurrentQuery(query) {
 }
 
 function foundMatch(query, value, isListFilter) {
-
-  if (['string', 'number'].indexOf(typeof value === 'undefined' ? 'undefined' : _typeof(value)) > -1) {
+  if (['string', 'number'].includes(typeof value === 'undefined' ? 'undefined' : _typeof(value))) {
     value = String(value).toLowerCase();
   }
 
   // List Filter
   if (isListFilter) {
-    return value == query;
+    return value === query;
   }
 
-  //Text Filter
+  // Text Filter
   if (typeof value === 'string') {
-    return value.indexOf(query) > -1;
+    return value.includes(query);
   }
 
   // Date range
+  var start = void 0;
+  var end = void 0;
 
-  if (is_valid_moment_object(value)) {
-    var start = moment(query.start, 'YYYY-MM-DD HH:mm:ss');
-    var end = moment(query.end, 'YYYY-MM-DD HH:mm:ss');
+  if ((0, _isValidMomentObject2.default)(value)) {
+    start = window.moment(query.start, 'YYYY-MM-DD HH:mm:ss');
+    end = window.moment(query.end, 'YYYY-MM-DD HH:mm:ss');
 
     return value >= start && value <= end;
   }
 
   if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object') {
-
     for (var key in value) {
-      if (foundMatch(query, value[key])) return true;
+      if (foundMatch(query, value[key])) {
+        return true;
+      }
     }
 
     return false;
@@ -127,12 +156,13 @@ function foundMatch(query, value, isListFilter) {
 }
 
 function getValue(val, filterByDate, dateFormat) {
-
-  if (is_valid_moment_object(val)) {
-
-    if (filterByDate) return val;
+  if ((0, _isValidMomentObject2.default)(val)) {
+    if (filterByDate) {
+      return val;
+    }
     return val.format(dateFormat);
   }
 
   return val;
 }
+module.exports = exports['default'];

@@ -10,7 +10,7 @@ describe(suite + ": Filters", () => {
 				filterByColumn:false
 			});
 			
-			enterQuery(null,'.VueTables__search input','zimb', trigger);
+			enterQuery(null,'.vue-table-search input','zimb', trigger);
 
 			setTimeout(()=>{
 				expect(vm().query).toEqual('zimb');
@@ -57,7 +57,7 @@ describe(suite + ": Filters", () => {
 					]
 				}}, ['id','name','code','uri']);
 
-			enterQuery('id','.VueTables__filters-row select[name="vf__id"]', "244", trigger, 'select');
+			enterQuery('id','.vue-table-filters-row select[name="vf__id"]', "244", trigger, 'select');
 
 			setTimeout(()=>{
 				expect(vm().query.id).toEqual("244");

@@ -1,6 +1,11 @@
 "use strict";
 
-module.exports = function (column) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-  return this.query.hasOwnProperty(column) && this.opts.dateColumns.indexOf(column) == -1 && !this.opts.listColumns.hasOwnProperty(column);
+exports.default = function (column) {
+  return this.query.hasOwnProperty(column) && !this.opts.dateColumns.includes(column) && !this.opts.listColumns.hasOwnProperty(column);
 };
+
+module.exports = exports["default"];

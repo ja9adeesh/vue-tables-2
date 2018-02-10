@@ -1,11 +1,11 @@
 'use strict';
 
-var search = require('../methods/client-search');
-var clone = require('clone');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-module.exports = function () {
-
-  var data = clone(this.tableData);
+exports.default = function () {
+  var data = (0, _clone2.default)(this.tableData);
 
   var column = this.orderBy.column;
 
@@ -13,7 +13,9 @@ module.exports = function () {
 
   if (column) {
     // dummy var to force compilation
-    if (this.time) this.time = this.time;
+    if (this.time) {
+      this.time = this.time;
+    }
 
     data = this.opts.sortingAlgorithm.call(this, data, column);
   } else if (this.opts.groupBy) {
@@ -21,7 +23,9 @@ module.exports = function () {
   }
 
   if (this.vuex) {
-    if (this.count != data.length) this.commit('SET_COUNT', data.length);
+    if (this.count !== data.length) {
+      this.commit('SET_COUNT', data.length);
+    }
   } else {
     this.count = data.length;
   }
@@ -32,3 +36,11 @@ module.exports = function () {
 
   return this.applyFilters(data);
 };
+
+var _clone = require('clone');
+
+var _clone2 = _interopRequireDefault(_clone);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];

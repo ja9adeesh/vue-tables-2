@@ -1,8 +1,11 @@
 'use strict';
 
-module.exports = function (query) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-  var el;
+exports.default = function (query) {
+  var el = void 0;
 
   if (this.opts.filterByColumn) {
     for (var column in query) {
@@ -18,6 +21,8 @@ module.exports = function (query) {
       }
     }
   } else {
-    this.$el.querySelector('.VueTables__search input').value = query;
+    this.$el.querySelector('.vue-table-search input').value = query;
   }
 };
+
+module.exports = exports['default'];

@@ -9,7 +9,7 @@ describe(suite + ': Filters', ()=>{
 			see('Zimb',"tbody tr:first-child td:nth-child(2)");	
 			
 			
-			enterQuery(null,'.VueTables__search input','yemen', trigger);
+			enterQuery(null,'.vue-table-search input','yemen', trigger);
 			
 			run(function() {
 				count("tbody tr", 1);
@@ -20,7 +20,7 @@ describe(suite + ': Filters', ()=>{
 		it(trigger + ': can search nested data structures (object)', (done) => {
 			createTable();
 
-			enterQuery(null,'.VueTables__search input','33', trigger);
+			enterQuery(null,'.vue-table-search input','33', trigger);
 
 			run(function() {
 				count("tbody tr", 1);
@@ -32,7 +32,7 @@ describe(suite + ': Filters', ()=>{
 		it(trigger + ': can recursively search nested data structures (array)', (done) => {
 			createTable();
 
-			enterQuery(null,'.VueTables__search input','golf', trigger);
+			enterQuery(null,'.vue-table-search input','golf', trigger);
 
 			run(function() {
 				count("tbody tr", 2);
@@ -45,7 +45,7 @@ describe(suite + ': Filters', ()=>{
 		it(trigger + ': can recursively search nested data structures (object)', (done) => {
 			createTable();
 
-			enterQuery(null,'.VueTables__search input','trudy', trigger);
+			enterQuery(null,'.vue-table-search input','trudy', trigger);
 
 			run(function() {
 				count("tbody tr", 2);
@@ -113,7 +113,7 @@ describe(suite + ': Filters', ()=>{
 				vm().$nextTick(()=>{
 					see('Zimb',"tbody tr:first-child td:nth-child(2)");	
 					
-					enterQuery('id','.VueTables__filters-row select[name="vf__id"]', 242, trigger, 'select');
+					enterQuery('id','.vue-table-filters-row select[name="vf__id"]', 242, trigger, 'select');
 					
 					run(function() {
 						count("tbody tr", 1);
@@ -151,7 +151,7 @@ describe(suite + ': Filters', ()=>{
 				vm().$nextTick(()=>{
 					see('Zimb',"tbody tr:first-child td:nth-child(2)");	
 					
-					enterQuery('id','.VueTables__filters-row select[name="vf__code"]', 'Eh', 'UI', 'select');
+					enterQuery('id','.vue-table-filters-row select[name="vf__code"]', 'Eh', 'UI', 'select');
 					
 					run(function() {
 						count("tbody tr", 1);

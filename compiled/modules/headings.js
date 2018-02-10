@@ -1,43 +1,51 @@
 "use strict";
 
-module.exports = function (h) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (h) {
   var _this = this;
 
   return function (right) {
-    var sortControl = require('./sort-control')(h, right);
+    var sortControl = (0, _sortControl2.default)(h, right);
 
     var headings = [];
 
-    if (_this.hasChildRow && _this.opts.childRowTogglerFirst) headings.push(h(
-      "th",
-      null,
-      []
-    ));
+    if (_this.hasChildRow && _this.opts.childRowTogglerFirst) {
+      headings.push(h("th", null));
+    }
 
     _this.allColumns.map(function (column) {
       headings.push(h(
         "th",
         {
           on: {
-            "click": this.orderByColumn.bind(this, column)
+            "click": _this.orderByColumn.bind(_this, column)
           },
 
-          "class": this.sortableClass(column) },
+          "class": _this.sortableClass(column) },
         [h(
           "span",
-          { "class": "VueTables__heading", attrs: { title: this.getHeadingTooltip(column, h) }
+          { "class": "vue-table-heading", attrs: { title: _this.getHeadingTooltip(column, h) }
           },
-          [this.getHeading(column, h)]
-        ), sortControl.call(this, column)]
+          [_this.getHeading(column, h)]
+        ), sortControl.call(_this, column)]
       ));
-    }.bind(_this));
+    });
 
-    if (_this.hasChildRow && !_this.opts.childRowTogglerFirst) headings.push(h(
-      "th",
-      null,
-      []
-    ));
+    if (_this.hasChildRow && !_this.opts.childRowTogglerFirst) {
+      headings.push(h("th", null));
+    }
 
     return headings;
   };
 };
+
+var _sortControl = require("./sort-control");
+
+var _sortControl2 = _interopRequireDefault(_sortControl);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports["default"];

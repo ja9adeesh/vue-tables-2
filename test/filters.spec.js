@@ -3,7 +3,7 @@ describe(suite  + ': Filters (Common)', function() {
 
 		createWrapper({filterByColumn:true});
 
-		exists('.VueTables__filters-row');
+		exists('.vue-table-filters-row');
 		exists('[name="vf__code"]');
 		exists('[name="vf__name"]');
 		exists('[name="vf__uri"]');
@@ -28,10 +28,10 @@ describe(suite  + ': Filters (Common)', function() {
 			}}, ['id','name','code','uri']);
 
 		
-			exists('.VueTables__filters-row select[name="vf__id"]');
-			see('Select id', '.VueTables__filters-row select[name="vf__id"] option:first-child');
-			see('Zimbabwe', '.VueTables__filters-row select[name="vf__id"] option:nth-child(2)');
-			see('Zambia', '.VueTables__filters-row select[name="vf__id"] option:nth-child(3)');
+			exists('.vue-table-filters-row select[name="vf__id"]');
+			see('Select id', '.vue-table-filters-row select[name="vf__id"] option:first-child');
+			see('Zimbabwe', '.vue-table-filters-row select[name="vf__id"] option:nth-child(2)');
+			see('Zambia', '.vue-table-filters-row select[name="vf__id"] option:nth-child(3)');
 
 	});
 
@@ -57,10 +57,10 @@ describe(suite  + ': Filters (Common)', function() {
 			}}, ['id','name','code','uri']);
 
 		
-			see('Select id', '.VueTables__filters-row select[name="vf__id"] option:first-child');
-			see('Zimbabwe', '.VueTables__filters-row select[name="vf__id"] option:nth-child(2)');
-			not_see('Zambia', '.VueTables__filters-row select[name="vf__id"]');
-			see('Yemen', '.VueTables__filters-row select[name="vf__id"] option:nth-child(3)');
+			see('Select id', '.vue-table-filters-row select[name="vf__id"] option:first-child');
+			see('Zimbabwe', '.vue-table-filters-row select[name="vf__id"] option:nth-child(2)');
+			not_see('Zambia', '.vue-table-filters-row select[name="vf__id"]');
+			see('Yemen', '.vue-table-filters-row select[name="vf__id"] option:nth-child(3)');
 
 	});
 
@@ -71,18 +71,18 @@ describe(suite  + ': Filters (Common)', function() {
 			dateColumns:['created_at']
 		}, ['code','name','uri','created_at']);
 
-		exists('#VueTables__created_at-filter.VueTables__date-filter');
+		exists('#vue-table-created_at-filter.vue-table-date-filter');
 
 	});
 
 	it('can hide the generic filter (regression test for #377)', () =>{
-		exists('.VueTables__search-field');
+		exists('.vue-table-search-field');
 
 		setOptions({
 			filterable:false
 		})
 
-		not_exists('.VueTables__search-field');
+		not_exists('.vue-table-search-field');
 	});
 	
 });

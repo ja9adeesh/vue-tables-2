@@ -1,8 +1,13 @@
 "use strict";
 
-module.exports = function (rowId, e) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-  if (e) e.stopPropagation();
+exports.default = function (rowId, e) {
+  if (e) {
+    e.stopPropagation();
+  }
 
   if (this.openChildRows.includes(rowId)) {
     var index = this.openChildRows.indexOf(rowId);
@@ -11,3 +16,5 @@ module.exports = function (rowId, e) {
     this.openChildRows.push(rowId);
   }
 };
+
+module.exports = exports["default"];

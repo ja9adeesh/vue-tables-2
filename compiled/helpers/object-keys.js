@@ -1,9 +1,17 @@
 "use strict";
 
-module.exports = function (obj) {
-    var keys = [];
-    for (var prop in obj) {
-        keys.push(prop);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (obj) {
+  var keys = [];
+  for (var prop in obj) {
+    if (obj.hasOwnProperty(prop)) {
+      keys.push(prop);
     }
-    return keys;
+  }
+  return keys;
 };
+
+module.exports = exports["default"];

@@ -1,4 +1,4 @@
-.VueTables__child-row-toggler {
+.vue-table-child-row-toggler {
   width:16px;
   height:16px;
   line-height: 16px;
@@ -7,11 +7,11 @@
   text-align: center;
 }
 
-.VueTables__child-row-toggler--closed::before {
+.vue-table-child-row-toggler--closed::before {
    content: "+";
 }
 
-.VueTables__child-row-toggler--open::before  {
+.vue-table-child-row-toggler--open::before  {
     content: "-";
 }
 

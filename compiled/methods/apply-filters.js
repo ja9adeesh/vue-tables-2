@@ -1,16 +1,27 @@
 'use strict';
 
-module.exports = function (data) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (data) {
+  var _this = this;
+
   return data.map(function (row) {
     for (var column in row) {
+      if (row.hasOwnProperty(column)) {
+        if (_this.source === 'client') {
+          row[column] = _this.formatDate(row[column], _this.opts.dateFormat);
+        }
 
-      if (this.source === 'client') row[column] = this.formatDate(row[column], this.opts.dateFormat);
-
-      if (this.isListFilter(column) && !this.opts.templates[column] && !this.$scopedSlots[column]) {
-        row[column] = this.optionText(row[column], column);
+        if (_this.isListFilter(column) && !_this.opts.templates[column] && !_this.$scopedSlots[column]) {
+          row[column] = _this.optionText(row[column], column);
+        }
       }
     }
 
     return row;
-  }.bind(this));
+  });
 };
+
+module.exports = exports['default'];

@@ -1,5 +1,11 @@
 "use strict";
 
-module.exports = function () {
-    return this.hasChildRow ? this.allColumns.length + 1 : this.allColumns.length;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  return this.hasChildRow ? this.allColumns.length + 1 : this.allColumns.length;
 };
+
+module.exports = exports["default"];

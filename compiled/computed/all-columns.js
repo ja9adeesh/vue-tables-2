@@ -1,6 +1,10 @@
 'use strict';
 
-module.exports = function () {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
   var _this = this;
 
   var display = this.columnsDisplay;
@@ -22,14 +26,17 @@ module.exports = function () {
   // developer defined columns display
 
   return this.Columns.filter(function (column) {
-
-    if (!display[column]) return true;
+    if (!display[column]) {
+      return true;
+    }
 
     var range = display[column];
     var operator = range[2];
 
     var inRange = (!range[0] || _this.windowWidth >= range[0]) && (!range[1] || _this.windowWidth < range[1]);
 
-    return operator == 'not' ? !inRange : inRange;
+    return operator === 'not' ? !inRange : inRange;
   });
 };
+
+module.exports = exports['default'];

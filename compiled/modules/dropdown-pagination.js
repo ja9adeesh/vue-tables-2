@@ -1,17 +1,18 @@
 "use strict";
 
-var debounce = require('debounce');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-module.exports = function (h) {
+exports.default = function (h) {
   var _this = this;
 
   return function (selectClass, id) {
-
     var pages = [];
-    var selected;
+    var selected = void 0;
 
     for (var pag = 1; pag <= _this.totalPages; pag++) {
-      var selected = _this.page == pag;
+      selected = _this.page === pag;
       pages.push(h(
         "option",
         {
@@ -25,7 +26,8 @@ module.exports = function (h) {
     }
     return h(
       "select",
-      { "class": selectClass + " dropdown-pagination",
+      {
+        "class": selectClass + " dropdown-pagination",
         directives: [{
           name: "show",
           value: _this.totalPages > 1
@@ -33,8 +35,7 @@ module.exports = function (h) {
         attrs: {
           name: "page",
 
-          id: id
-        },
+          id: id },
         ref: "page",
         domProps: {
           "value": _this.page
@@ -47,3 +48,14 @@ module.exports = function (h) {
     );
   };
 };
+
+var _debounce = require("debounce");
+
+var _debounce2 = _interopRequireDefault(_debounce);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// eslint-disable-next-line no-unused-vars
+module.exports = exports["default"];
+
+// eslint-disable-next-line no-unused-vars

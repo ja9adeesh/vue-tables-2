@@ -1,23 +1,24 @@
 'use strict';
 
-var merge = require('merge');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-module.exports = function () {
-
+exports.default = function () {
   if (typeof $ === 'undefined') {
     console.error('Date filters require jquery and daterangepicker');
     return;
   }
 
-  var el;
+  var el = void 0;
   var that = this;
   var query = this.vuex ? JSON.parse(JSON.stringify(this.query)) : this.query;
 
-  var search = function search(query, e) {
-    return that.source == 'client' ? that.search(that.data, e) : that.serverSearch(query, e);
+  var search = function search(_query, e) {
+    return that.source === 'client' ? that.search(that.data, e) : that.serverSearch(query, e);
   };
 
-  var datepickerOptions = merge.recursive(this.opts.datepickerOptions, {
+  var datepickerOptions = _merge2.default.recursive(this.opts.datepickerOptions, {
     autoUpdateInput: false,
     singleDatePicker: false,
     locale: {
@@ -26,40 +27,63 @@ module.exports = function () {
   });
 
   that.opts.dateColumns.forEach(function (column) {
-
-    el = $(that.$el).find("#VueTables__" + column + "-filter");
+    el = window.$(that.$el).find('#vue-table-' + column + '-filter');
     el.daterangepicker(datepickerOptions);
 
-    el.on('apply.daterangepicker', function (ev, picker) {
+    el.on('apply.daterangepicker', function (ev, _ref) {
+      var startDate = _ref.startDate,
+          endDate = _ref.endDate;
 
       query[column] = {
-        start: picker.startDate.format('YYYY-MM-DD HH:mm:ss'),
-        end: picker.endDate.format('YYYY-MM-DD HH:mm:ss')
+        start: startDate.format('YYYY-MM-DD HH:mm:ss'),
+        end: endDate.format('YYYY-MM-DD HH:mm:ss')
       };
 
-      if (!that.vuex) that.query = query;
+      if (!that.vuex) {
+        that.query = query;
+      }
 
-      $(this).text(picker.startDate.format(that.opts.dateFormat) + " - " + picker.endDate.format(that.opts.dateFormat));
+      window.$(this).text(startDate.format(that.opts.dateFormat) + ' - ' + endDate.format(that.opts.dateFormat));
 
       that.updateState('query', query);
 
-      search(query, { target: { name: 'vf__' + column, value: query[column] } });
+      search(query, {
+        target: {
+          name: 'vf__' + column,
+          value: query[column]
+        }
+      });
     });
 
     el.on('cancel.daterangepicker', function (ev, picker) {
-
       query[column] = '';
 
-      if (!that.vuex) that.query = query;
+      if (!that.vuex) {
+        that.query = query;
+      }
 
-      picker.setStartDate(moment());
-      picker.setEndDate(moment());
+      picker.setStartDate(window.moment());
+      picker.setEndDate(window.moment());
 
       that.updateState('query', query);
 
-      $(this).html("<span class='VueTables__filter-placeholder'>" + that.display('filterBy', { column: that.getHeading(column) }) + "</span>");
+      window.$(this).html('<span class=\'vue-table-filter-placeholder\'>' + that.display('filterBy', {
+        column: that.getHeading(column) }) + '</span>');
 
-      search(query, { target: { name: 'vf__' + column, value: query[column] } });
+      search(query, {
+        target: {
+          name: 'vf__' + column,
+          value: query[column]
+        }
+      });
     });
   });
 };
+
+var _merge = require('merge');
+
+var _merge2 = _interopRequireDefault(_merge);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];

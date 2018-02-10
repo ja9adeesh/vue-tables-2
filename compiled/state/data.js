@@ -4,9 +4,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _merge = require('merge');
+
+var _merge2 = _interopRequireDefault(_merge);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = function (useVuex, source) {
   var page = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
-
 
   var data = {
     vuex: true,
@@ -16,7 +21,9 @@ exports.default = function (useVuex, source) {
     displayColumnsDropdown: false
   };
 
-  if (useVuex) return data;
+  if (useVuex) {
+    return data;
+  }
 
   data = (0, _merge2.default)(data, {
     vuex: false,
@@ -32,13 +39,11 @@ exports.default = function (useVuex, source) {
     }
   });
 
-  if (source == 'server') data.data = [];
+  if (source === 'server') {
+    data.data = [];
+  }
 
   return data;
 };
 
-var _merge = require('merge');
-
-var _merge2 = _interopRequireDefault(_merge);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+module.exports = exports['default'];

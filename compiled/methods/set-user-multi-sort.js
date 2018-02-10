@@ -1,11 +1,16 @@
 'use strict';
 
-module.exports = function (secondaryCol) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
+exports.default = function (secondaryCol) {
   var primaryCol = this.orderBy.column;
   var primaryAsc = this.orderBy.ascending;
 
-  if (!this.userMultiSorting[primaryCol]) this.userMultiSorting[primaryCol] = [];
+  if (!this.userMultiSorting[primaryCol]) {
+    this.userMultiSorting[primaryCol] = [];
+  }
 
   var multi = this.userMultiSorting[primaryCol];
 
@@ -20,27 +25,28 @@ module.exports = function (secondaryCol) {
       this.userMultiSorting[this.orderBy.column] = multi;
     }
   } else {
-    var secondary = multi.filter(function (col) {
-      return col.column == secondaryCol;
+    var secondary = multi.filter(function (_ref) {
+      var column = _ref.column;
+      return column === secondaryCol;
     })[0];
 
     if (secondary) {
       if (!secondary.ascending) {
         // remove sort
-        this.userMultiSorting[primaryCol] = multi.filter(function (col) {
-          return col.column != secondaryCol;
+        this.userMultiSorting[primaryCol] = multi.filter(function (_ref2) {
+          var column = _ref2.column;
+          return column !== secondaryCol;
         });
-        if (!this.userMultiSorting[primaryCol].length) this.userMultiSorting = {};
+        if (!this.userMultiSorting[primaryCol].length) {
+          this.userMultiSorting = {};
+        }
       } else {
         // change direction
         secondary.ascending = !secondary.ascending;
       }
     } else {
       // add sort
-      multi.push({
-        column: secondaryCol,
-        ascending: true
-      });
+      multi.push({ column: secondaryCol, ascending: true });
     }
   }
   // force re-compilation of the filteredData computed property
@@ -53,4 +59,5 @@ function getMultiSortData(main, secondary) {
   var cols = [JSON.parse(JSON.stringify(main))];
   cols = cols.concat(secondary[main.column]);
   return cols;
-};
+}
+module.exports = exports['default'];

@@ -1,4 +1,7 @@
 {
   "presets": ["es2015"],
-  "plugins": ["transform-vue-jsx"]
+  "plugins": [
+    "add-module-exports",
+    "transform-vue-jsx"
+  ]
 }

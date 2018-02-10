@@ -1,6 +1,10 @@
 "use strict";
 
-module.exports = function () {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
   var state = {
     page: 1,
     query: this.query,
@@ -13,3 +17,5 @@ module.exports = function () {
 
   return state;
 };
+
+module.exports = exports["default"];

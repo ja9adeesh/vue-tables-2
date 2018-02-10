@@ -1,6 +1,11 @@
 'use strict';
 
-module.exports = function () {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  var _this = this;
 
   var customQueries = {};
 
@@ -8,11 +13,12 @@ module.exports = function () {
   var key = void 0;
 
   this.opts.customFilters.forEach(function (filter) {
-
-    key = this.source == 'client' ? filter.name : filter;
+    key = _this.source === 'client' ? filter.name : filter;
 
     customQueries[key] = init.hasOwnProperty(key) ? init[key] : '';
-  }.bind(this));
+  });
 
   return customQueries;
 };
+
+module.exports = exports['default'];

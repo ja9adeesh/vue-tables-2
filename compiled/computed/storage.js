@@ -1,8 +1,15 @@
 'use strict';
 
-module.exports = function () {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-  if (typeof localStorage === 'undefined') return {};
+exports.default = function () {
+  if (typeof localStorage === 'undefined') {
+    return {};
+  }
 
   return this.opts.storage === 'local' ? localStorage : sessionStorage;
 };
+
+module.exports = exports['default'];

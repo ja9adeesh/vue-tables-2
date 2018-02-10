@@ -39,17 +39,17 @@ describe(suite + ': Child row', () => {
 		click(firstRowToggler);
 		
 		run(function() {
-			count('.VueTables__child-row',1);
+			count('.vue-table-child-row',1);
 		},done);
 		
 	});
 	
 	it('displays the correct toggler icon', (done) => {
 		run(function() {
-			count('.VueTables__child-row-toggler--closed', 10);
+			count('.vue-table-child-row-toggler--closed', 10);
 			click(firstRowToggler);
-			count('.VueTables__child-row-toggler--closed', 9);
-			exists('table tbody tr:first-child .VueTables__child-row-toggler--open');
+			count('.vue-table-child-row-toggler--closed', 9);
+			exists('table tbody tr:first-child .vue-table-child-row-toggler--open');
 		},done);
 	});
 	
@@ -58,7 +58,7 @@ describe(suite + ': Child row', () => {
 		vm().toggleChildRow(245);
 		
 		run(function() {
-			count('.VueTables__child-row',1);
+			count('.vue-table-child-row',1);
 		},done);
 	});
 	
@@ -66,12 +66,12 @@ describe(suite + ': Child row', () => {
 		
 		click(firstRowToggler);
 		
-		count('.VueTables__child-row',1);
+		count('.vue-table-child-row',1);
 		
 		vm().toggleChildRow(245);
 		
 		run(function() {
-			count('.VueTables__child-row',0);
+			count('.vue-table-child-row',0);
 		},done);
 	});
 	
@@ -85,7 +85,7 @@ describe(suite + ': Child row', () => {
 		vm().toggleChildRow('ZW');
 		
 		run(function() {
-			count('.VueTables__child-row',1);
+			count('.vue-table-child-row',1);
 		},done);
 		
 	});
@@ -98,8 +98,8 @@ describe(suite + ': Child row', () => {
 		});
 		
 		run(function() {
-			not_exists('table tbody tr td:first-child .VueTables__child-row-toggler');
-			exists('table tbody tr td:last-child .VueTables__child-row-toggler');
+			not_exists('table tbody tr td:first-child .vue-table-child-row-toggler');
+			exists('table tbody tr td:last-child .vue-table-child-row-toggler');
 		},done);
 		
 		

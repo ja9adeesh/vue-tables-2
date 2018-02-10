@@ -1,8 +1,13 @@
 "use strict";
 
-module.exports = function (data) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
+exports.default = function (data) {
   this.count = data.length;
 
   return data;
 };
+
+module.exports = exports["default"];

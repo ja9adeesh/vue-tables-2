@@ -1,9 +1,16 @@
 'use strict';
 
-module.exports = function (page) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-    if (this.vuex) return;
+exports.default = function (page) {
+  if (this.vuex) {
+    return;
+  }
 
-    this.setPage(page);
-    this.dispatch('pagination', page);
+  this.setPage(page);
+  this.dispatch('pagination', page);
 };
+
+module.exports = exports['default'];

@@ -1,10 +1,17 @@
 'use strict';
 
-module.exports = function (column) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-    var sortAll = typeof this.opts.sortable == 'boolean' && this.opts.sortable;
+exports.default = function (column) {
+  var sortAll = typeof this.opts.sortable === 'boolean' && this.opts.sortable;
 
-    if (sortAll) return true;
+  if (sortAll) {
+    return true;
+  }
 
-    return this.opts.sortable.indexOf(column) > -1;
+  return this.opts.sortable.includes(column);
 };
+
+module.exports = exports['default'];

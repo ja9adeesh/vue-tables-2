@@ -1,6 +1,6 @@
 describe(suite + ': Columns Display', () => {
 
-    var dropdown = '.VueTables__columns-dropdown';
+    var dropdown = '.vue-table-columns-dropdown';
     
     beforeEach(()=>{
         setOptions({

@@ -1,40 +1,53 @@
 'use strict';
 
-var is_empty = require('../helpers/is-empty');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-var registerVuexModule = require('../state/register-module');
+var _isEmpty = require('../helpers/is-empty');
 
-module.exports = function (self) {
+var _isEmpty2 = _interopRequireDefault(_isEmpty);
 
+var _registerModule = require('../state/register-module');
+
+var _registerModule2 = _interopRequireDefault(_registerModule);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (self) {
   if (self.vuex) {
-    registerVuexModule(self);
+    (0, _registerModule2.default)(self);
   } else {
     self.limit = self.opts.perPage;
   }
 
-  if (is_empty(self.opts.columnsDisplay)) return;
+  if ((0, _isEmpty2.default)(self.opts.columnsDisplay)) {
+    return;
+  }
 
   self.columnsDisplay = getColumnsDisplay(self.opts.columnsDisplay);
 
   window.addEventListener('resize', function () {
     self.windowWidth = window.innerWidth;
-  }.bind(self));
+  });
 };
 
 function getColumnsDisplay(columnsDisplay) {
   var res = {};
-  var range;
-  var device;
-  var operator;
+  var range = void 0;
+  var device = void 0;
+  var operator = void 0;
 
   for (var column in columnsDisplay) {
-    operator = getOperator(columnsDisplay[column]);
-    try {
-      device = getDevice(columnsDisplay[column]);
-      range = getRange(device, operator);
-      res[column] = range.concat([operator]);
-    } catch (err) {
-      console.warn('Unknown device ' + device);
+    if (columnsDisplay.hasOwnProperty(column)) {
+      operator = getOperator(columnsDisplay[column]);
+      try {
+        device = getDevice(columnsDisplay[column]);
+        range = getRange(device, operator);
+        res[column] = range.concat([operator]);
+      } catch (err) {
+        console.warn('Unknown device ' + device);
+      }
     }
   }
 
@@ -42,7 +55,6 @@ function getColumnsDisplay(columnsDisplay) {
 }
 
 function getRange(device, operator) {
-
   var devices = {
     desktop: [1024, null],
     tablet: [480, 1024],
@@ -64,10 +76,11 @@ function getRange(device, operator) {
 }
 
 function getOperator(val) {
-
   var pieces = val.split('_');
 
-  if (['not', 'min', 'max'].indexOf(pieces[0]) > -1) return pieces[0];
+  if (['not', 'min', 'max'].includes(pieces[0])) {
+    return pieces[0];
+  }
 
   return false;
 }
@@ -76,3 +89,4 @@ function getDevice(val) {
   var pieces = val.split('_');
   return pieces.length > 1 ? pieces[1] : pieces[0];
 }
+module.exports = exports['default'];

@@ -6,9 +6,14 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-exports.default = function (source) {
+var _merge = require('merge');
 
-  var extra = source == 'server' ? serverExtra() : clientExtra();
+var _merge2 = _interopRequireDefault(_merge);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (source) {
+  var extra = source === 'server' ? serverExtra() : clientExtra();
 
   return _merge2.default.recursive(true, {
     props: {
@@ -46,32 +51,35 @@ exports.default = function (source) {
         return this.state.query;
       },
       orderBy: function orderBy() {
-        return {
-          column: this.state.sortBy,
-          ascending: this.state.ascending
-        };
+        return { column: this.state.sortBy, ascending: this.state.ascending };
       }
     },
     methods: {
       commit: function commit(action, payload) {
         return this.$store.commit(this.name + '/' + action, payload);
       },
-      orderByColumn: function orderByColumn(column, ev) {
+      orderByColumn: function orderByColumn(column, _ref) {
+        var shiftKey = _ref.shiftKey;
 
-        if (!this.sortable(column)) return;
+        if (!this.sortable(column)) {
+          return;
+        }
 
-        if (ev.shiftKey && this.orderBy.column && this.hasMultiSort) {
+        if (shiftKey && this.orderBy.column && this.hasMultiSort) {
           this.setUserMultiSort(column);
         } else {
           var ascending = this.orderBy.column === column ? !this.orderBy.ascending : true;
-          var orderBy = { column: column, ascending: ascending };
+          var orderBy = {
+            column: column,
+            ascending: ascending
+          };
           this.updateState('orderBy', orderBy);
           this.commit('SORT', orderBy);
           this.dispatch('sorted', orderBy);
         }
       },
       setLimit: function setLimit(e) {
-        var limit = (typeof e === 'undefined' ? 'undefined' : _typeof(e)) === 'object' ? parseInt(e.target.value) : e;
+        var limit = (typeof e === 'undefined' ? 'undefined' : _typeof(e)) === 'object' ? parseInt(e.target.value, 10) : e;
         this.updateState('perPage', limit);
         this.commit('SET_LIMIT', limit);
         this.dispatch('limit', limit);
@@ -81,36 +89,32 @@ exports.default = function (source) {
         this.commit('SORT', { column: column, ascending: ascending });
       },
       setPage: function setPage(page) {
-
         if (!page) {
           page = this.$refs.page.value;
         }
 
-        if (!this.opts.pagination.dropdown) this.$refs.pagination.Page = page;
+        if (!this.opts.pagination.dropdown) {
+          this.$refs.pagination.Page = page;
+        }
 
         this.commit('PAGINATE', page);
       }
-
     }
   }, extra);
 };
-
-var _merge = require('merge');
-
-var _merge2 = _interopRequireDefault(_merge);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function serverExtra() {
   return {
     methods: {
       setData: function setData(data) {
+        var _this = this;
+
         this.commit('SET_DATA', data);
         this.commit('LOADED', data);
 
         setTimeout(function () {
-          this.dispatch('loaded', data);
-        }.bind(this), 0);
+          _this.dispatch('loaded', data);
+        }, 0);
       }
     }
   };
@@ -119,3 +123,4 @@ function serverExtra() {
 function clientExtra() {
   return {};
 }
+module.exports = exports['default'];

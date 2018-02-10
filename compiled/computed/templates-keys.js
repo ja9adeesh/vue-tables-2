@@ -1,5 +1,11 @@
 "use strict";
 
-module.exports = function () {
-      return Object.keys(this.opts.templates);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  return Object.keys(this.opts.templates);
 };
+
+module.exports = exports["default"];

@@ -1,10 +1,15 @@
 'use strict';
 
-module.exports = function (column) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-  var c = this.sortable(column) ? 'VueTables__sortable ' : '';
+exports.default = function (column) {
+  var c = this.sortable(column) ? 'vue-table-sortable ' : '';
 
   c += this.columnClass(column);
 
   return c;
 };
+
+module.exports = exports['default'];

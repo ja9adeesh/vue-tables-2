@@ -1,15 +1,26 @@
 'use strict';
 
-module.exports = function (text, replacements) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-   if (!this.opts.texts) return '';
+exports.default = function (text, replacements) {
+  if (!this.opts.texts) {
+    return '';
+  }
 
-   var text = this.opts.texts[text];
+  var _text = this.opts.texts[text];
 
-   if (replacements) for (var key in replacements) {
-      // console.log(key)
-      text = text.replace('{' + key + '}', replacements[key]);
-   }
+  if (replacements) {
+    for (var key in replacements) {
+      if (replacements.hasOwnProperty(key)) {
+        // console.log(key)
+        _text = text.replace('{' + key + '}', replacements[key]);
+      }
+    }
+  }
 
-   return text;
+  return _text;
 };
+
+module.exports = exports['default'];

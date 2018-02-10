@@ -1,17 +1,20 @@
 "use strict";
 
-module.exports = function (h) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (h) {
   var _this = this;
 
   return function (perpageValues, cls, id) {
-
     return perpageValues.length > 1 ? h(
       "select",
-      { "class": cls,
+      {
+        "class": cls,
         attrs: { name: "limit",
 
-          id: id
-        },
+          id: id },
         domProps: {
           "value": _this.limit
         },
@@ -23,3 +26,5 @@ module.exports = function (h) {
     ) : '';
   };
 };
+
+module.exports = exports["default"]; // eslint-disable-next-line no-unused-vars

@@ -371,7 +371,7 @@ When the plugin detects a `childRow` function it appends the child rows and prep
 
 Example styling (also found in `style.css`):
 ```css
-.VueTables__child-row-toggler {
+.vue-table-child-row-toggler {
     width: 16px;
     height: 16px;
     line-height: 16px;
@@ -380,11 +380,11 @@ Example styling (also found in `style.css`):
     text-align: center;
 }
 
-.VueTables__child-row-toggler--closed::before {
+.vue-table-child-row-toggler--closed::before {
     content: "+";
 }
 
-.VueTables__child-row-toggler--open::before {
+.vue-table-child-row-toggler--open::before {
     content: "-";
 }
 ```

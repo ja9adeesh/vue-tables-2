@@ -1,21 +1,18 @@
 'use strict';
 
-var _merge = require('merge');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-var _merge2 = _interopRequireDefault(_merge);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = function (h, modules, classes, slots) {
-
-  var filterId = 'VueTables__search_' + this.id;
-  var ddpId = 'VueTables__dropdown-pagination_' + this.id;
-  var perpageId = 'VueTables__limit_' + this.id;
-  var perpageValues = require('../modules/per-page-values').call(this, h);
+exports.default = function (h, modules, classes, slots) {
+  var filterId = 'vue-table-search_' + this.id;
+  var ddpId = 'vue-table-dropdown-pagination_' + this.id;
+  var perpageId = 'vue-table-limit_' + this.id;
+  var perpageValues = _perPageValues2.default.call(this, h);
 
   var genericFilter = this.opts.filterByColumn || !this.opts.filterable ? '' : h(
     'div',
-    { 'class': 'VueTables__search-field' },
+    { 'class': 'vue-table-search-field' },
     [h(
       'label',
       {
@@ -27,7 +24,7 @@ module.exports = function (h, modules, classes, slots) {
 
   var perpage = perpageValues.length > 1 ? h(
     'div',
-    { 'class': 'VueTables__limit-field' },
+    { 'class': 'vue-table-limit-field' },
     [h(
       'label',
       { 'class': classes.label, attrs: { 'for': perpageId }
@@ -38,10 +35,11 @@ module.exports = function (h, modules, classes, slots) {
 
   var dropdownPagination = this.opts.pagination && this.opts.pagination.dropdown ? h(
     'div',
-    { 'class': 'VueTables__pagination-wrapper' },
+    { 'class': 'vue-table-pagination-wrapper' },
     [h(
       'div',
-      { 'class': classes.field + ' ' + classes.inline + ' ' + classes.right + ' VueTables__dropdown-pagination',
+      {
+        'class': classes.field + ' ' + classes.inline + ' ' + classes.right + ' vue-table-dropdown-pagination',
         directives: [{
           name: 'show',
           value: this.totalPages > 1
@@ -59,7 +57,7 @@ module.exports = function (h, modules, classes, slots) {
 
   var columnsDropdown = this.opts.columnsDropdown ? h(
     'div',
-    { 'class': 'VueTables__columns-dropdown-wrapper' },
+    { 'class': 'vue-table-columns-dropdown-wrapper' },
     [modules.columnsDropdown(classes)]
   ) : '';
 
@@ -75,7 +73,7 @@ module.exports = function (h, modules, classes, slots) {
 
   return h(
     'div',
-    { 'class': "VueTables VueTables--" + this.source },
+    { 'class': 'vue-table vue-table--' + this.source },
     [h(
       'div',
       { 'class': classes.row },
@@ -84,11 +82,13 @@ module.exports = function (h, modules, classes, slots) {
         { 'class': classes.column },
         [h(
           'div',
-          { 'class': classes.field + ' ' + classes.inline + ' ' + classes.left + ' VueTables__search' },
+          {
+            'class': classes.field + ' ' + classes.inline + ' ' + classes.left + ' vue-table-search' },
           [slots.beforeFilter, genericFilter, slots.afterFilter]
         ), h(
           'div',
-          { 'class': classes.field + ' ' + classes.inline + ' ' + classes.right + ' VueTables__limit' },
+          {
+            'class': classes.field + ' ' + classes.inline + ' ' + classes.right + ' vue-table-limit' },
           [slots.beforeLimit, perpage, slots.afterLimit]
         ), dropdownPagination, columnsDropdown]
       )]
@@ -97,7 +97,8 @@ module.exports = function (h, modules, classes, slots) {
       { 'class': 'table-responsive' },
       [h(
         'table',
-        { 'class': 'VueTables__table ' + (this.opts.skin ? this.opts.skin : classes.table) },
+        {
+          'class': 'vue-table-table ' + (this.opts.skin ? this.opts.skin : classes.table) },
         [h(
           'thead',
           null,
@@ -119,3 +120,15 @@ module.exports = function (h, modules, classes, slots) {
     })), modules.dropdownPaginationCount()]
   );
 };
+
+var _merge = require('merge');
+
+var _merge2 = _interopRequireDefault(_merge);
+
+var _perPageValues = require('../modules/per-page-values');
+
+var _perPageValues2 = _interopRequireDefault(_perPageValues);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default'];

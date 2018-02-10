@@ -1,6 +1,10 @@
 'use strict';
 
-module.exports = function () {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
   return {
     beforeFilters: this.$slots.beforeFilters ? this.$slots.beforeFilters : '',
     afterFilters: this.$slots.afterFilters ? this.$slots.afterFilters : '',
@@ -15,3 +19,5 @@ module.exports = function () {
     beforeTable: this.$slots.beforeTable ? this.$slots.beforeTable : ''
   };
 };
+
+module.exports = exports['default'];

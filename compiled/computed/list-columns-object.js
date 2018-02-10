@@ -1,6 +1,12 @@
 "use strict";
 
-module.exports = function () {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  var _this = this;
+
   var columns = Object.keys(this.opts.listColumns);
 
   var res = {};
@@ -8,10 +14,15 @@ module.exports = function () {
   columns.forEach(function (column) {
     res[column] = {};
 
-    this.opts.listColumns[column].forEach(function (item) {
-      res[column][item.id] = item.text;
+    _this.opts.listColumns[column].forEach(function (_ref) {
+      var id = _ref.id,
+          text = _ref.text;
+
+      res[column][id] = text;
     });
-  }.bind(this));
+  });
 
   return res;
 };
+
+module.exports = exports["default"];

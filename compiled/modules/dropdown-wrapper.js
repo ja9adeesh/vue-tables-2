@@ -1,29 +1,44 @@
 'use strict';
 
-module.exports = function (h, classes, columns) {
-    if (classes.framework === 'bulma') {
-        return h(
-            'div',
-            { 'class': classes.dropdown.menu, style: this.displayColumnsDropdown ? 'display:block' : 'display:none' },
-            [h(
-                'div',
-                { 'class': classes.dropdown.content },
-                [columns]
-            )]
-        );
-    }
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-    if (classes.framework === 'bootstrap4') {
-        return h(
-            'div',
-            { 'class': classes.dropdown.menu, style: this.displayColumnsDropdown ? 'display:block' : 'display:none' },
-            [columns]
-        );
-    }
+exports.default = function (h, _ref, columns) {
+  var framework = _ref.framework,
+      dropdown = _ref.dropdown;
 
+  if (framework === 'bulma') {
     return h(
-        'ul',
-        { 'class': classes.dropdown.menu, style: this.displayColumnsDropdown ? 'display:block' : 'display:none' },
+      'div',
+      {
+        'class': dropdown.menu,
+        style: this.displayColumnsDropdown ? 'display:block' : 'display:none' },
+      [h(
+        'div',
+        { 'class': dropdown.content },
         [columns]
+      )]
     );
+  }
+
+  if (framework === 'bootstrap4') {
+    return h(
+      'div',
+      {
+        'class': dropdown.menu,
+        style: this.displayColumnsDropdown ? 'display:block' : 'display:none' },
+      [columns]
+    );
+  }
+
+  return h(
+    'ul',
+    {
+      'class': dropdown.menu,
+      style: this.displayColumnsDropdown ? 'display:block' : 'display:none' },
+    [columns]
+  );
 };
+
+module.exports = exports['default'];

@@ -73,7 +73,7 @@ describe(suite + ': Slots', () => {
             beforeFilter:'<i class="material-icons input-group-addon">search</i>'
         });
         
-        exists('.material-icons', '.VueTables__search');            
+        exists('.material-icons', '.vue-table-search');            
         
     });
     
@@ -82,7 +82,7 @@ describe(suite + ': Slots', () => {
             afterFilter:'<i class="material-icons input-group-addon">search</i>'
         });
         
-        exists('.material-icons', '.VueTables__search');            
+        exists('.material-icons', '.vue-table-search');            
         
         
     });
@@ -93,7 +93,7 @@ describe(suite + ': Slots', () => {
         });
         
         run(()=>{
-            exists('.material-icons', '.VueTables__limit');            
+            exists('.material-icons', '.vue-table-limit');            
         }, done);
         
     });
@@ -104,7 +104,7 @@ describe(suite + ': Slots', () => {
         });
         
         run(()=>{
-            exists('.material-icons', '.VueTables__limit');            
+            exists('.material-icons', '.vue-table-limit');            
         }, done);        
         
     });

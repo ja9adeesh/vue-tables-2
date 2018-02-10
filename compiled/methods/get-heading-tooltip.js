@@ -1,18 +1,29 @@
 'use strict';
 
-module.exports = function (value, h) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-	if (typeof value !== 'string') return '';
+exports.default = function (value, h) {
+  if (typeof value !== 'string') {
+    return '';
+  }
 
-	var derivedHeadingTooltip = '';
+  var derivedHeadingTooltip = '';
 
-	if (!this.opts.headingsTooltips.hasOwnProperty(value)) return derivedHeadingTooltip;
+  if (!this.opts.headingsTooltips.hasOwnProperty(value)) {
+    return derivedHeadingTooltip;
+  }
 
-	if (typeof this.opts.headingsTooltips[value] === 'function') {
-		if (h) return this.opts.headingsTooltips[value].call(this.$parent, h);
+  if (typeof this.opts.headingsTooltips[value] === 'function') {
+    if (h) {
+      return this.opts.headingsTooltips[value].call(this.$parent, h);
+    }
 
-		return derivedHeadingTooltip;
-	}
+    return derivedHeadingTooltip;
+  }
 
-	return this.opts.headingsTooltips[value];
+  return this.opts.headingsTooltips[value];
 };
+
+module.exports = exports['default'];

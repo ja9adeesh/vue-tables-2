@@ -1,24 +1,30 @@
 "use strict";
 
-module.exports = function (h) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (h) {
   var _this = this;
 
-  return function (classes) {
+  return function (_ref) {
+    var groupTr = _ref.groupTr;
 
-    var data = _this.source == 'client' ? _this.filteredData : _this.tableData;
+    var data = _this.source === 'client' ? _this.filteredData : _this.tableData;
 
     if (_this.count === 0) {
-
+      // eslint-disable-next-line no-unused-vars
       var colspan = _this.allColumns.length;
-      if (_this.hasChildRow) colspan++;
+      if (_this.hasChildRow) {
+        colspan++;
+      }
 
       return h(
         "tr",
-        { "class": "VueTables__no-results" },
+        { "class": "vue-table-no-results" },
         [h(
           "td",
-          { "class": "text-center",
-            attrs: { colspan: _this.colspan }
+          { "class": "text-center", attrs: { colspan: _this.colspan }
           },
           [_this.display(_this.loading ? 'loading' : 'noResults')]
         )]
@@ -26,19 +32,20 @@ module.exports = function (h) {
     }
 
     var rows = [];
-    var columns;
+    var columns = void 0;
     var rowKey = _this.opts.uniqueKey;
 
-    var rowClass;
+    var rowClass = void 0;
     var recordCount = (_this.Page - 1) * _this.limit;
-    var currentGroup;
+    var currentGroup = void 0;
 
     data.map(function (row, index) {
-
       if (_this.opts.groupBy && _this.source === 'client' && row[_this.opts.groupBy] !== currentGroup) {
         rows.push(h(
           "tr",
-          { "class": classes.groupTr, on: {
+          {
+            "class": groupTr,
+            on: {
               "click": _this._toggleGroupDirection.bind(_this)
             }
           },
@@ -56,22 +63,22 @@ module.exports = function (h) {
       index = recordCount + index + 1;
 
       columns = [];
+      var childRowToggler = void 0;
 
       if (_this.hasChildRow) {
-        var childRowToggler = h(
+        childRowToggler = h(
           "td",
           null,
-          [h(
-            "span",
-            {
-              on: {
-                "click": _this.toggleChildRow.bind(_this, row[rowKey])
-              },
-              "class": "VueTables__child-row-toggler " + _this.childRowTogglerClass(row[rowKey]) },
-            []
-          )]
+          [h("span", {
+            on: {
+              "click": _this.toggleChildRow.bind(_this, row[rowKey])
+            },
+
+            "class": 'vue-table-child-row-toggler ' + _this.childRowTogglerClass(row[rowKey]) })]
         );
-        if (_this.opts.childRowTogglerFirst) columns.push(childRowToggler);
+        if (_this.opts.childRowTogglerFirst) {
+          columns.push(childRowToggler);
+        }
       }
 
       _this.allColumns.map(function (column) {
@@ -84,23 +91,27 @@ module.exports = function (h) {
         ));
       });
 
-      if (_this.hasChildRow && !_this.opts.childRowTogglerFirst) columns.push(childRowToggler);
+      if (_this.hasChildRow && !_this.opts.childRowTogglerFirst) {
+        columns.push(childRowToggler);
+      }
 
       rowClass = _this.opts.rowClassCallback ? _this.opts.rowClassCallback(row) : '';
 
       rows.push(h(
         "tr",
-        { "class": rowClass, on: {
+        {
+          "class": rowClass,
+          on: {
             "click": _this.rowWasClicked.bind(_this, row),
             "dblclick": _this.rowWasClicked.bind(_this, row)
           }
         },
-        [columns, " "]
+        [columns]
       ));
 
       rows.push(_this.hasChildRow && _this.openChildRows.includes(row[rowKey]) ? h(
         "tr",
-        { "class": "VueTables__child-row" },
+        { "class": "vue-table-child-row" },
         [h(
           "td",
           {
@@ -114,3 +125,5 @@ module.exports = function (h) {
     return rows;
   };
 };
+
+module.exports = exports["default"];

@@ -1,8 +1,15 @@
 'use strict';
 
-module.exports = function (response) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-  if (typeof axios !== 'undefined') return response.data;
+exports.default = function (response) {
+  if (typeof axios !== 'undefined') {
+    return response.data;
+  }
 
   return response;
 };
+
+module.exports = exports['default'];

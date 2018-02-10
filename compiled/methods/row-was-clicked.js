@@ -1,11 +1,14 @@
 'use strict';
 
-module.exports = function (row, event) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-  var data;
+exports.default = function (row, event) {
+  var data = void 0;
   var id = this.opts.uniqueKey;
 
-  if (this.source == 'client' && typeof row[id] !== 'undefined') {
+  if (this.source === 'client' && typeof row[id] !== 'undefined') {
     data = this.tableData.filter(function (r) {
       return row[id] === r[id];
     })[0];
@@ -13,5 +16,10 @@ module.exports = function (row, event) {
     data = row;
   }
 
-  this.dispatch('row-click', { row: data, event: event });
+  this.dispatch('row-click', {
+    row: data,
+    event: event
+  });
 };
+
+module.exports = exports['default'];
